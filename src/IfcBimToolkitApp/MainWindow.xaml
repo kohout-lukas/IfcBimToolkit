@@ -1,0 +1,64 @@
+﻿<Window x:Class="IfcBimToolkitApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:IfcBimToolkitApp"
+        mc:Ignorable="d"
+        Title="IFC &amp; BIM Toolkit" Height="500" Width="1000">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"></ColumnDefinition>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="4"></ColumnDefinition>
+            <ColumnDefinition Width="4"></ColumnDefinition>
+            <ColumnDefinition Width="4"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="10"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+                <Button x:Name="Btn_IfcValidation" Grid.Row="0" Content="VALIDACE IFC"
+                        Click="Btn_Click_IfcValidation" IsDefault="True"
+                        Background="{x:Null}" BorderBrush="#FFEE7219"
+                        FontWeight="Bold" FontFamily="Cascadia Mono"
+                        FontSize="18"
+                        Margin="0 2 0 2"/>
+                <Button x:Name="Btn_IfcEditing" Grid.Row="1" Content="EDITACE IFC"
+                        Click="Btn_Click_IfcEditing" IsDefault="False"
+                        Background="{x:Null}" BorderBrush="#FFEE7219"
+                        FontWeight="Bold" FontFamily="Cascadia Mono"
+                        FontSize="18"
+                        Margin="0 2 0 2"/>
+                <Button x:Name="Btn_BimcollabTools" Grid.Row="2" Content="BIMCOLLAB NÁSTROJE"
+                        Click="Btn_Click_BimcollabTools" IsDefault="False"
+                        Background="{x:Null}" BorderBrush="#FFEE7219"
+                        FontWeight="Bold" FontFamily="Cascadia Mono"
+                        FontSize="18"
+                        Margin="0 2 0 2"/>
+                <Button x:Name="Btn_RevitTools" Grid.Row="3" Content="REVIT NÁSTROJE"
+                        Click="Btn_Click_RevitTools" IsDefault="False"
+                        Background="{x:Null}" BorderBrush="#FFEE7219"
+                        FontWeight="Bold" FontFamily="Cascadia Mono"
+                        FontSize="18"
+                        Margin="0 2 0 2"/>
+        </Grid>
+        <Grid x:Name = "Grid_Content" Grid.Row="1" Grid.Column="5"
+              Margin="0 2 0 0">
+            <Frame x:Name="Frame_Content" NavigationUIVisibility="Hidden"/>
+        </Grid>
+        <Rectangle Grid.Column="3" Grid.Row="1" Fill="#FFEE7219" />
+    </Grid>
+</Window>

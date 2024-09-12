@@ -1,4 +1,8 @@
-﻿using System.Xml.Serialization;
+﻿// Copyright (c) BIM Consulting s.r.o. (www.bimcon.cz)
+// All rights reserved.
+// Developed by BIM Consulting s.r.o. (www.bimcon.cz)
+
+using System.Xml.Serialization;
 
 namespace InformationDeliverySpecification;
 
@@ -14,7 +18,7 @@ public class ids
 
     private specificationType[] specificationsField;
 
-    
+
     public idsInfo info
     {
         get
@@ -27,7 +31,7 @@ public class ids
         }
     }
 
-    
+
     [XmlArrayItemAttribute("specification", IsNullable = false)]
     public specificationType[] specifications
     {
@@ -69,7 +73,7 @@ public class idsInfo
 
     private string milestoneField;
 
-    
+
     public string title
     {
         get
@@ -82,7 +86,7 @@ public class idsInfo
         }
     }
 
-    
+
     public string copyright
     {
         get
@@ -95,7 +99,7 @@ public class idsInfo
         }
     }
 
-    
+
     public string version
     {
         get
@@ -108,7 +112,7 @@ public class idsInfo
         }
     }
 
-    
+
     public string description
     {
         get
@@ -121,7 +125,7 @@ public class idsInfo
         }
     }
 
-    
+
     public string author
     {
         get
@@ -134,7 +138,7 @@ public class idsInfo
         }
     }
 
-    
+
     [XmlElementAttribute(DataType = "date")]
     public System.DateTime date
     {
@@ -148,7 +152,7 @@ public class idsInfo
         }
     }
 
-    
+
     [XmlIgnoreAttribute()]
     public bool dateSpecified
     {
@@ -162,7 +166,7 @@ public class idsInfo
         }
     }
 
-    
+
     public string purpose
     {
         get
@@ -175,7 +179,7 @@ public class idsInfo
         }
     }
 
-    
+
     public string milestone
     {
         get
@@ -210,7 +214,7 @@ public class requirementsType
 
     private requirementsTypeMaterial[] materialField;
 
-    
+
     [XmlElementAttribute("entity")]
     public requirementsTypeEntity[] entity
     {
@@ -224,7 +228,7 @@ public class requirementsType
         }
     }
 
-    
+
     [XmlElementAttribute("partOf")]
     public requirementsTypePartOf[] partOf
     {
@@ -238,7 +242,7 @@ public class requirementsType
         }
     }
 
-    
+
     [XmlElementAttribute("classification")]
     public requirementsTypeClassification[] classification
     {
@@ -252,7 +256,7 @@ public class requirementsType
         }
     }
 
-    
+
     [XmlElementAttribute("attribute")]
     public requirementsTypeAttribute[] attribute
     {
@@ -266,7 +270,7 @@ public class requirementsType
         }
     }
 
-    
+
     [XmlElementAttribute("property")]
     public requirementsTypeProperty[] property
     {
@@ -280,7 +284,7 @@ public class requirementsType
         }
     }
 
-    
+
     [XmlElementAttribute("material")]
     public requirementsTypeMaterial[] material
     {
@@ -306,7 +310,7 @@ public class requirementsTypeEntity : entityType
 
     private string instructionsField;
 
-    
+
     [XmlAttributeAttribute()]
     public string instructions
     {
@@ -334,7 +338,7 @@ public class entityType
 
     private idsValue predefinedTypeField;
 
-    
+
     public idsValue name
     {
         get
@@ -347,7 +351,7 @@ public class entityType
         }
     }
 
-    
+
     public idsValue predefinedType
     {
         get
@@ -372,7 +376,7 @@ public class idsValue
 
     private object itemField;
 
-    
+
     [XmlElementAttribute("restriction", typeof(object))]
     [XmlElementAttribute("simpleValue", typeof(string))]
     public object Item
@@ -406,7 +410,7 @@ public class requirementsTypePartOf : partOfType
         this.cardinalityField = simpleCardinality.required;
     }
 
-    
+
     [XmlAttributeAttribute()]
     [System.ComponentModel.DefaultValueAttribute(simpleCardinality.required)]
     public simpleCardinality cardinality
@@ -421,7 +425,7 @@ public class requirementsTypePartOf : partOfType
         }
     }
 
-    
+
     [XmlAttributeAttribute()]
     public string instructions
     {
@@ -443,10 +447,10 @@ public class requirementsTypePartOf : partOfType
 public enum simpleCardinality
 {
 
-    
+
     required,
 
-    
+
     prohibited,
 }
 
@@ -465,7 +469,7 @@ public class partOfType
 
     private bool relationFieldSpecified;
 
-    
+
     public entityType entity
     {
         get
@@ -478,7 +482,7 @@ public class partOfType
         }
     }
 
-    
+
     [XmlAttributeAttribute()]
     public relations relation
     {
@@ -492,7 +496,7 @@ public class partOfType
         }
     }
 
-    
+
     [XmlIgnoreAttribute()]
     public bool relationSpecified
     {
@@ -514,19 +518,19 @@ public class partOfType
 public enum relations
 {
 
-    
+
     IFCRELAGGREGATES,
 
-    
+
     IFCRELASSIGNSTOGROUP,
 
-    
+
     IFCRELCONTAINEDINSPATIALSTRUCTURE,
 
-    
+
     IFCRELNESTS,
 
-    
+
     [XmlEnumAttribute("IFCRELVOIDSELEMENT IFCRELFILLSELEMENT")]
     IFCRELVOIDSELEMENTIFCRELFILLSELEMENT,
 }
@@ -551,7 +555,7 @@ public class requirementsTypeClassification : classificationType
         this.cardinalityField = conditionalCardinality.required;
     }
 
-    
+
     [XmlAttributeAttribute(DataType = "anyURI")]
     public string uri
     {
@@ -565,7 +569,7 @@ public class requirementsTypeClassification : classificationType
         }
     }
 
-    
+
     [XmlAttributeAttribute()]
     [System.ComponentModel.DefaultValueAttribute(conditionalCardinality.required)]
     public conditionalCardinality cardinality
@@ -580,7 +584,7 @@ public class requirementsTypeClassification : classificationType
         }
     }
 
-    
+
     [XmlAttributeAttribute()]
     public string instructions
     {
@@ -602,13 +606,13 @@ public class requirementsTypeClassification : classificationType
 public enum conditionalCardinality
 {
 
-    
+
     required,
 
-    
+
     prohibited,
 
-    
+
     optional,
 }
 
@@ -625,7 +629,7 @@ public class classificationType
 
     private idsValue systemField;
 
-    
+
     public idsValue value
     {
         get
@@ -638,7 +642,7 @@ public class classificationType
         }
     }
 
-    
+
     public idsValue system
     {
         get
@@ -670,7 +674,7 @@ public class requirementsTypeAttribute : attributeType
         this.cardinalityField = conditionalCardinality.required;
     }
 
-    
+
     [XmlAttributeAttribute()]
     [System.ComponentModel.DefaultValueAttribute(conditionalCardinality.required)]
     public conditionalCardinality cardinality
@@ -685,7 +689,7 @@ public class requirementsTypeAttribute : attributeType
         }
     }
 
-    
+
     [XmlAttributeAttribute()]
     public string instructions
     {
@@ -713,7 +717,7 @@ public class attributeType
 
     private idsValue valueField;
 
-    
+
     public idsValue name
     {
         get
@@ -726,7 +730,7 @@ public class attributeType
         }
     }
 
-    
+
     public idsValue value
     {
         get
@@ -760,7 +764,7 @@ public class requirementsTypeProperty : propertyType
         this.cardinalityField = conditionalCardinality.required;
     }
 
-    
+
     [XmlAttributeAttribute(DataType = "anyURI")]
     public string uri
     {
@@ -774,7 +778,7 @@ public class requirementsTypeProperty : propertyType
         }
     }
 
-    
+
     [XmlAttributeAttribute()]
     [System.ComponentModel.DefaultValueAttribute(conditionalCardinality.required)]
     public conditionalCardinality cardinality
@@ -789,7 +793,7 @@ public class requirementsTypeProperty : propertyType
         }
     }
 
-    
+
     [XmlAttributeAttribute()]
     public string instructions
     {
@@ -821,7 +825,7 @@ public class propertyType
 
     private string dataTypeField;
 
-    
+
     public idsValue propertySet
     {
         get
@@ -834,7 +838,7 @@ public class propertyType
         }
     }
 
-    
+
     public idsValue baseName
     {
         get
@@ -847,7 +851,7 @@ public class propertyType
         }
     }
 
-    
+
     public idsValue value
     {
         get
@@ -860,7 +864,7 @@ public class propertyType
         }
     }
 
-    
+
     [XmlAttributeAttribute(DataType = "normalizedString")]
     public string dataType
     {
@@ -895,7 +899,7 @@ public class requirementsTypeMaterial : materialType
         this.cardinalityField = conditionalCardinality.required;
     }
 
-    
+
     [XmlAttributeAttribute(DataType = "anyURI")]
     public string uri
     {
@@ -909,7 +913,7 @@ public class requirementsTypeMaterial : materialType
         }
     }
 
-    
+
     [XmlAttributeAttribute()]
     [System.ComponentModel.DefaultValueAttribute(conditionalCardinality.required)]
     public conditionalCardinality cardinality
@@ -924,7 +928,7 @@ public class requirementsTypeMaterial : materialType
         }
     }
 
-    
+
     [XmlAttributeAttribute()]
     public string instructions
     {
@@ -950,7 +954,7 @@ public class materialType
 
     private idsValue valueField;
 
-    
+
     public idsValue value
     {
         get
@@ -985,7 +989,7 @@ public class applicabilityType
 
     private materialType[] materialField;
 
-    
+
     public entityType entity
     {
         get
@@ -998,7 +1002,7 @@ public class applicabilityType
         }
     }
 
-    
+
     [XmlElementAttribute("partOf")]
     public partOfType[] partOf
     {
@@ -1012,7 +1016,7 @@ public class applicabilityType
         }
     }
 
-    
+
     [XmlElementAttribute("classification")]
     public classificationType[] classification
     {
@@ -1026,7 +1030,7 @@ public class applicabilityType
         }
     }
 
-    
+
     [XmlElementAttribute("attribute")]
     public attributeType[] attribute
     {
@@ -1040,7 +1044,7 @@ public class applicabilityType
         }
     }
 
-    
+
     [XmlElementAttribute("property")]
     public propertyType[] property
     {
@@ -1054,7 +1058,7 @@ public class applicabilityType
         }
     }
 
-    
+
     [XmlElementAttribute("material")]
     public materialType[] material
     {
@@ -1092,7 +1096,7 @@ public class specificationType
 
     private string instructionsField;
 
-    
+
     public applicabilityType applicability
     {
         get
@@ -1105,7 +1109,7 @@ public class specificationType
         }
     }
 
-    
+
     public specificationTypeRequirements requirements
     {
         get
@@ -1118,7 +1122,7 @@ public class specificationType
         }
     }
 
-    
+
     [XmlAttributeAttribute()]
     public string name
     {
@@ -1132,7 +1136,7 @@ public class specificationType
         }
     }
 
-    
+
     [XmlAttributeAttribute()]
     public specificationTypeIfcVersion ifcVersion
     {
@@ -1146,7 +1150,7 @@ public class specificationType
         }
     }
 
-    
+
     [XmlAttributeAttribute()]
     public string identifier
     {
@@ -1160,7 +1164,7 @@ public class specificationType
         }
     }
 
-    
+
     [XmlAttributeAttribute()]
     public string description
     {
@@ -1174,7 +1178,7 @@ public class specificationType
         }
     }
 
-    
+
     [XmlAttributeAttribute()]
     public string instructions
     {
@@ -1200,7 +1204,7 @@ public class specificationTypeRequirements : requirementsType
 
     private string descriptionField;
 
-    
+
     [XmlAttributeAttribute()]
     public string description
     {
@@ -1221,8 +1225,8 @@ public class specificationTypeRequirements : requirementsType
 [System.SerializableAttribute()]
 [XmlTypeAttribute(AnonymousType = true, Namespace = "http://standards.buildingsmart.org/IDS")]
 public enum specificationTypeIfcVersion
-{    
-    IFC2X3 = 1,    
-    IFC4 = 2,    
+{
+    IFC2X3 = 1,
+    IFC4 = 2,
     IFC4X3_ADD2 = 4,
 }

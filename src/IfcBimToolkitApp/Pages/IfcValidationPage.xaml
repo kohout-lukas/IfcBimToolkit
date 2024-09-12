@@ -57,7 +57,8 @@
              Text="CCI_Element"
              VerticalContentAlignment="Center"
              VerticalAlignment="Center" HorizontalAlignment="Stretch"
-             BorderBrush="#FFEE7219" SelectionBrush="#FFEE7219"                 
+             BorderBrush="#FFEE7219" SelectionBrush="#FFEE7219"     
+             GotFocus="TxtBoxInput_GotFocus"
              Margin="5 0 0 0" />
         <TextBlock Grid.Column="0" Grid.Row="3" x:Name="LblInputProjectStage" 
             Text="Projektový stupeň (DUR, DSP, PDPS, DVZ, DSPS):"
@@ -70,7 +71,8 @@
              Text="PDPS"
              VerticalContentAlignment="Center"
              VerticalAlignment="Center" HorizontalAlignment="Stretch"
-             BorderBrush="#FFEE7219" SelectionBrush="#FFEE7219"                 
+             BorderBrush="#FFEE7219" SelectionBrush="#FFEE7219"   
+             GotFocus="TxtBoxInput_GotFocus"
              Margin="5 0 0 0" />
         <TextBlock Grid.Column="0" Grid.Row="4" x:Name="LblInputProffesion" 
             Text="Profese (ASR, VZT, KAN, VOD, PLN, ...):"
@@ -83,7 +85,8 @@
             Text=""
             HorizontalContentAlignment="Center"
             VerticalAlignment="Center" HorizontalAlignment="Stretch"
-            BorderBrush="#FFEE7219" SelectionBrush="#FFEE7219"                 
+            BorderBrush="#FFEE7219" SelectionBrush="#FFEE7219"   
+            GotFocus="TxtBoxInput_GotFocus"
             Margin="5 2 0 0" />
         <Button Grid.Column="0" Grid.Row="6"
             x:Name="BtnValidateElements" Content="KONTROLA PRVKŮ V MODELECH"

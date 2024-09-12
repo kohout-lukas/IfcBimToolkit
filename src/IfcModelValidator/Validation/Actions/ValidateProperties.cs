@@ -1,12 +1,11 @@
-﻿// IfcModelValidator validates IFC models against given data standard.
-// Copyright (C) 2023 Lukas Kohout
+﻿// Copyright (c) BIM Consulting s.r.o. (www.bimcon.cz)
+// All rights reserved.
+// Developed by BIM Consulting s.r.o. (www.bimcon.cz)
 
 #region
 
 using DataStandardRepository.Enums;
 using DataStandardRepository.Models;
-using System.Collections.Generic;
-using System.Xml.Linq;
 using Xbim.Ifc4.Interfaces;
 
 #endregion
@@ -107,8 +106,8 @@ public static class ValidateProperties
         if (partOfComplex)
             return property.PartOfComplex.First().Name.ToString();
         var name = property.PartOfPset.First().Name;
-        return name is null 
-            ? throw new ArgumentNullException(nameof(property)) 
+        return name is null
+            ? throw new ArgumentNullException(nameof(property))
             : name;
     }
 }

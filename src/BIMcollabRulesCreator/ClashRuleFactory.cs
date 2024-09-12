@@ -1,5 +1,6 @@
-﻿// IfcModelValidator validates IFC models against given data standard.
-// Copyright (C) 2023 Lukas Kohout
+﻿// Copyright (c) BIM Consulting s.r.o. (www.bimcon.cz)
+// All rights reserved.
+// Developed by BIM Consulting s.r.o. (www.bimcon.cz)
 
 using BimCollabRulesCreator.Models.ClashRules;
 using BimCollabRulesCreator.Models.SmartViews;
@@ -100,7 +101,7 @@ public class ClashRuleFactory
             Modifier = string.Empty
         };
 
-        foreach(var name in names)
+        foreach (var name in names)
         {
             var sourceRule = new Rule("IFC Element", "Summary", name, "Add", "Is");
             var targetRule = new Rule("IFC Element", "Summary", name, "Add", "Is");

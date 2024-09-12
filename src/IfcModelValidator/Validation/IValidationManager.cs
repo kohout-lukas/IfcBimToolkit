@@ -1,12 +1,8 @@
-﻿// IfcModelValidator validates IFC models against given data standard.
-// Copyright (C) 2023 Lukas Kohout
+﻿// Copyright (c) BIM Consulting s.r.o. (www.bimcon.cz)
+// All rights reserved.
+// Developed by BIM Consulting s.r.o. (www.bimcon.cz)
 
 using IfcModelValidator.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IfcModelValidator.Validation;
 public interface IValidationManager

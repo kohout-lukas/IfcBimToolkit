@@ -1,15 +1,10 @@
-﻿// IfcModelValidator validates IFC models against given data standard.
-// Copyright (C) 2023 Lukas Kohout
+﻿// Copyright (c) BIM Consulting s.r.o. (www.bimcon.cz)
+// All rights reserved.
+// Developed by BIM Consulting s.r.o. (www.bimcon.cz)
 
 #region
 
-using DataStandardRepository.Actions.LiteDB;
-using DataStandardRepository.Enums;
-using DataStandardRepository.Models;
-using IfcModelValidator.Handlers.Ifc;
 using IfcModelValidator.Models;
-using IfcModelValidator.Validation.Actions;
-using LiteDB;
 using Xbim.Ifc4.Interfaces;
 
 #endregion

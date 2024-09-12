@@ -1,5 +1,6 @@
-﻿// IfcModelValidator validates IFC models against given data standard.
-// Copyright (C) 2023 Lukas Kohout
+﻿// Copyright (c) BIM Consulting s.r.o. (www.bimcon.cz)
+// All rights reserved.
+// Developed by BIM Consulting s.r.o. (www.bimcon.cz)
 
 #region
 
@@ -41,8 +42,8 @@ public static class ProjectStageFactory
         int row,
         ProjectStage projectStage)
     {
-        InputIndex stage = Enum.TryParse(projectStage.ToString(), true, out InputIndex inputIndex1) 
-            ? inputIndex1 
+        InputIndex stage = Enum.TryParse(projectStage.ToString(), true, out InputIndex inputIndex1)
+            ? inputIndex1
             : InputIndex.Unknown;
         if (stage == InputIndex.Unknown)
         {
@@ -53,8 +54,8 @@ public static class ProjectStageFactory
 
         foreach (Profession profession in Enum.GetValues(typeof(Profession)))
         {
-            InputIndex p = Enum.TryParse(profession.ToString(), true, out InputIndex inputIndex2) 
-                ? inputIndex2 
+            InputIndex p = Enum.TryParse(profession.ToString(), true, out InputIndex inputIndex2)
+                ? inputIndex2
                 : InputIndex.Unknown;
             if (p == InputIndex.Unknown)
             {

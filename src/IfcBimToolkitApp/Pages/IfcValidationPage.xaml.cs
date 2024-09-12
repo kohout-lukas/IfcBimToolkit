@@ -4,38 +4,21 @@
 
 using DataStandardRepository.Actions.LiteDB;
 using DataStandardRepository.Models;
-using IfcModelValidator.Handlers.Ifc;
+using DataStandardRepository.Writers;
+using IfcBimToolkitApp.Mappers;
+using IfcModelHandler;
+using IfcModelHandler.Properties;
+using IfcModelHandler.Elements;
 using IfcModelValidator.Validation;
 using IfcModelValidator.Writers;
 using IfcModelValidator.Writers.Csv;
 using LiteDB;
 using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Xml.Serialization;
-
-using Xbim.Ifc4x3;
-using Xbim.Ifc4;
-using BimCollabRulesCreator.Models.ClashRules;
-using BimCollabRulesCreator;
 using Xbim.Ifc4.Interfaces;
-using DataStandardRepository.Writers;
-using IfcBimToolkitApp.Mappers;
-using OfficeOpenXml;
-
 
 namespace IfcBimToolkitApp.Pages;
 /// <summary>
@@ -52,7 +35,10 @@ public partial class IfcValidationPage : Page
     }
     private void TxtBoxInput_GotFocus(object sender, RoutedEventArgs e)
     {
-        TxtBoxInput_ObjectType.Text = "";
+        if(sender is TextBox textBox)
+        {
+            textBox.Text = "";
+        }
     }
 
     #region Button Actions
@@ -295,7 +281,7 @@ public partial class IfcValidationPage : Page
         ProgressBar.Visibility = Visibility.Hidden;
         st.Stop();
         LblProgressBar.Content = $"HOTOVO! Mapovací tabulka vyexportována. (Čas {st.ElapsedMilliseconds / 1000} s)";
-    }    
+    }
     #endregion
 
     #region Async Tasks
@@ -359,9 +345,9 @@ public partial class IfcValidationPage : Page
             Thread.Sleep(1000);
         });
     }
-    #endregion  
-    
-    private void ShowErrorLine(string message)
+    #endregion
+
+    public void ShowErrorLine(string message)
     {
         LblProgressBar.Visibility = Visibility.Visible;
         LblProgressBar.Foreground = new SolidColorBrush(Colors.Red);

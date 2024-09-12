@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\IfcModelHandler\IfcModelHandler.csproj" />
     <ProjectReference Include="..\DataStandardRepository\DataStandardRepository.csproj" />
   </ItemGroup>
 

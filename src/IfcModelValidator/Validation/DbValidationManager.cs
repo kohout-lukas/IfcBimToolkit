@@ -1,13 +1,15 @@
-﻿// IfcModelValidator validates IFC models against given data standard.
-// Copyright (C) 2023 Lukas Kohout
+﻿// Copyright (c) BIM Consulting s.r.o. (www.bimcon.cz)
+// All rights reserved.
+// Developed by BIM Consulting s.r.o. (www.bimcon.cz)
 
 #region
 
 using DataStandardRepository.Actions.LiteDB;
 using DataStandardRepository.Enums;
 using DataStandardRepository.Models;
-using IfcModelValidator.Handlers.Ifc;
+using IfcModelHandler.Properties;
 using IfcModelValidator.Models;
+using IfcModelHandler.Models;
 using IfcModelValidator.Validation.Actions;
 using LiteDB;
 using Xbim.Ifc4.Interfaces;
@@ -51,7 +53,7 @@ public class DbValidationManager : IValidationManager
         _profession = success
             ? Enum.Parse<Profession>(profession)
             : Profession.None;
-  
+
         IfcObjectTypeName = ifcObjectTypoName;
         IfcElementTypeName = ifcElementTypeName;
     }
@@ -88,7 +90,8 @@ public class DbValidationManager : IValidationManager
             if (FilterElements.FilterByParameterValues(allProperties, "Fáze vytvoření", ["Existující"]))
                 continue;
 
-            var classification = IfcPropertyHandler.GetClassification(allProperties, IfcObjectTypeName, [.. IfcElementTypeName.Split(";")]);
+            var classificationProperties = IfcPropertyHandler.GetClassification(allProperties, IfcObjectTypeName, [.. IfcElementTypeName.Split(";")]);
+            var classification = new ClassificationModel(classificationProperties.Item1, classificationProperties.Item2);
 
 
             if (classification is null)
@@ -150,7 +153,7 @@ public class DbValidationManager : IValidationManager
                 result.Add(validationResult);
                 continue;
             }
-            
+
 
             var properties = ValidateProperties.Validate(allProperties, elementInDb, withPsets, _projectStage, _profession);
 

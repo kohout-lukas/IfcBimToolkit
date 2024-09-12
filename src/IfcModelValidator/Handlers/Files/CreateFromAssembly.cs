@@ -1,5 +1,6 @@
-﻿// IfcModelValidator validates IFC models against given data standard.
-// Copyright (C) 2023 Lukas Kohout
+﻿// Copyright (c) BIM Consulting s.r.o. (www.bimcon.cz)
+// All rights reserved.
+// Developed by BIM Consulting s.r.o. (www.bimcon.cz)
 
 #region
 
@@ -28,11 +29,11 @@ public static class CreateFromAssembly
         try
         {
             if (stream is null)
+            {
                 return;
-
+            }
             using Stream file = File.Create(Path.Combine(targetDir, targetName));
             CopyStream(stream, file);
-
         }
         catch
         {
@@ -50,6 +51,8 @@ public static class CreateFromAssembly
         var buffer = new byte[8 * 1024];
         int len = input.Read(buffer, 0, buffer.Length);
         while (len > 0)
+        {
             output.Write(buffer, 0, len);
+        }
     }
 }

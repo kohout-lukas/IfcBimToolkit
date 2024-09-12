@@ -1,5 +1,6 @@
-﻿// IfcModelValidator validates IFC models against given data standard.
-// Copyright (C) 2023 Lukas Kohout
+﻿// Copyright (c) BIM Consulting s.r.o. (www.bimcon.cz)
+// All rights reserved.
+// Developed by BIM Consulting s.r.o. (www.bimcon.cz)
 
 #region
 
@@ -198,7 +199,7 @@ public class ImportDataStandard(string databaseFilePath, IEnumerable<ElementMode
             .Where(x => x.Classification == elementModel.Classification)
             .First()
             .Id;
-        if (elementModel.ElementParameters is null) 
+        if (elementModel.ElementParameters is null)
             return;
 
         var elToUpdate = elementCollection.FindById(elementId);

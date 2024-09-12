@@ -1,12 +1,14 @@
-﻿// IfcModelValidator validates IFC models against given data standard.
-// Copyright (C) 2023 Lukas Kohout
+﻿// Copyright (c) BIM Consulting s.r.o. (www.bimcon.cz)
+// All rights reserved.
+// Developed by BIM Consulting s.r.o. (www.bimcon.cz)
 
 #region
+using IfcModelHandler.Elements;
 using Xbim.Ifc4.Interfaces;
 
 #endregion
 
-namespace IfcModelValidator.Handlers.Ifc;
+namespace IfcModelHandler;
 
 /// <summary>
 ///     Logic for parsing IFC files.
@@ -42,9 +44,9 @@ public class IfcParser(string inputIfcFilePath)
     ///     Retrieves all IFC elements from source IFC file.
     /// </summary>
     /// <returns>collection of parsed IFC elements.</returns>
-    private IEnumerable<IIfcElement> GetAllElements()
+    public IEnumerable<IIfcElement> GetAllElements()
     {
         var ifcModel = IfcFileHandler.OpenIfcFileForReading(_inputIfcFilePath);
-        return IfcElementHandler.GetAllElementsInIfcModel(ifcModel);
+        return IfcElementHandler<IIfcElement>.GetAllElementsInIfcModel(ifcModel);
     }
 }

@@ -1,12 +1,12 @@
-﻿// IfcModelValidator validates IFC models against given data standard.
-// Copyright (C) 2023 Lukas Kohout
+﻿// Copyright (c) BIM Consulting s.r.o. (www.bimcon.cz)
+// All rights reserved.
+// Developed by BIM Consulting s.r.o. (www.bimcon.cz)
 
 #region
 
 using DataStandardRepository.Factories;
 using DataStandardRepository.Models;
 using OfficeOpenXml;
-using System.Linq;
 
 #endregion
 
@@ -33,8 +33,8 @@ public class InputManager(string inputFilePath, int startingRow)
 
         package.Compatibility.IsWorksheets1Based = true;
         ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-        
-        foreach(var worksheet in package.Workbook.Worksheets)
+
+        foreach (var worksheet in package.Workbook.Worksheets)
         {
             // ParseExcelWorksheet(worksheet, _startingRow);
             ParseExcelWorksheet(worksheet, 3);
@@ -42,7 +42,7 @@ public class InputManager(string inputFilePath, int startingRow)
         return _elements;
     }
 
-    private static void ParseExcelWorksheet(ExcelWorksheet worksheet, 
+    private static void ParseExcelWorksheet(ExcelWorksheet worksheet,
         int row)
     {
         InputParser parser = new(worksheet);
@@ -60,13 +60,13 @@ public class InputManager(string inputFilePath, int startingRow)
                 row++;
                 continue;
             }
-            
+
             var ifcObjectType = parser.GetValueAsString(row, InputIndex.IfcObjectType);
             var ifcElementType = parser.GetValueAsString(row, InputIndex.IfcElementType);
 
             var elementParsed = _elements.Any(
                 x => x.UniqueClassification.Keys.First() == ifcObjectType &&
-                x.UniqueClassification.Values.First() == ifcElementType);          
+                x.UniqueClassification.Values.First() == ifcElementType);
 
             if (!elementParsed)
             {
@@ -83,7 +83,7 @@ public class InputManager(string inputFilePath, int startingRow)
                 element.ElementParameters = new(commonParameters);
                 _elements.Add(element);
             }
-            
+
             var parameter = ParameterFactory.Create(parser, row, DataTypeFactory.Create(parser, row));
             var projectStages = ProjectStageFactory.Create(parser, row);
             UpdateExistingElement(ifcObjectType, ifcElementType, parameter, projectStages);
@@ -91,8 +91,8 @@ public class InputManager(string inputFilePath, int startingRow)
             row++;
         }
     }
-    private static void UpdateExistingElement(string ifcObjectType, 
-        string ifcElementType, 
+    private static void UpdateExistingElement(string ifcObjectType,
+        string ifcElementType,
         ParameterModel parameter,
         IEnumerable<ProjectStageModel> projectStages)
     {
@@ -104,7 +104,7 @@ public class InputManager(string inputFilePath, int startingRow)
             && elementToUpdate.ElementParameters.Any(x => x.Parameter.Name == parameter.Name);
         if (!parameterExists)
         {
-            var param = new ElementParameterModel(parameter,projectStages);
+            var param = new ElementParameterModel(parameter, projectStages);
             elementToUpdate.ElementParameters!.Add(param);
             return;
         }
@@ -113,7 +113,7 @@ public class InputManager(string inputFilePath, int startingRow)
         foreach (var stage in projectStages)
         {
             var p = stage.ProjectStage;
-            if(existingParameter.ProjectStages.Any(x => x.ProjectStage == p))
+            if (existingParameter.ProjectStages.Any(x => x.ProjectStage == p))
             {
                 var existingProjectStage = existingParameter.ProjectStages.First(x => x.ProjectStage == p);
                 existingProjectStage.Professions.UnionWith(stage.Professions);

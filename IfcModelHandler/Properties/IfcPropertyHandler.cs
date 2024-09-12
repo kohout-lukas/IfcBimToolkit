@@ -1,10 +1,11 @@
-﻿// IfcModelValidator validates IFC models against given data standard.
-// Copyright (C) 2023 Lukas Kohout
+﻿// Copyright (c) BIM Consulting s.r.o. (www.bimcon.cz)
+// All rights reserved.
+// Developed by BIM Consulting s.r.o. (www.bimcon.cz)
 
-using IfcModelValidator.Models;
+using IfcModelHandler.Models;
 using Xbim.Ifc4.Interfaces;
 
-namespace IfcModelValidator.Handlers.Ifc;
+namespace IfcModelHandler.Properties;
 public class IfcPropertyHandler
 {
     /// <summary>
@@ -76,9 +77,7 @@ public class IfcPropertyHandler
             if (property is null)
                 continue;
             if (property is IIfcComplexProperty)
-            {
                 properties.AddRange(GetComplexProperties((property as IIfcComplexProperty)!));
-            }
             properties.Add((property, false));
         }
         return properties;
@@ -90,7 +89,7 @@ public class IfcPropertyHandler
     /// <param name="ifcObjectTypePropertyName">Property name containing classification information.</param>
     /// <param name="ifcElementTypePropertyNames">Collection of possible property names containing classification information.</param>
     /// <returns>sorting code for given IFC element.</returns>
-    public static ClassificationModel GetClassification(IEnumerable<(IIfcProperty, bool)> properties,
+    public static (IfcPropertyModel, IfcPropertyModel) GetClassification(IEnumerable<(IIfcProperty, bool)> properties,
         string ifcObjectTypePropertyName,
         List<string> ifcElementTypePropertyNames)
     {
@@ -116,6 +115,6 @@ public class IfcPropertyHandler
                     : ifcElementType.Item1.PartOfPset.First().Name.ToString() ?? string.Empty)
             : new IfcPropertyModel();
 
-        return new ClassificationModel(objectProperty, elementProperty);
+        return (objectProperty, elementProperty);
     }
 }

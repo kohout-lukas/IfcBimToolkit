@@ -1,5 +1,6 @@
-﻿// IfcModelValidator validates IFC models against given data standard.
-// Copyright (C) 2023 Lukas Kohout
+﻿// Copyright (c) BIM Consulting s.r.o. (www.bimcon.cz)
+// All rights reserved.
+// Developed by BIM Consulting s.r.o. (www.bimcon.cz)
 
 using DataStandardRepository.Models;
 using OfficeOpenXml;
@@ -86,7 +87,7 @@ public class ExcelWriter : IDataStandardWriter
 
             foreach (var stage in elParameter.ProjectStages)
             {
-                foreach(var proffesion in stage.Professions)
+                foreach (var proffesion in stage.Professions)
                 {
                     var stageAndProffesion = $"{stage.ProjectStage}:{proffesion}";
                     var col = GetCorrespondingColumn(stageAndProffesion, worksheet);

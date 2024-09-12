@@ -1,10 +1,11 @@
-﻿// IfcModelValidator validates IFC models against given data standard.
-// Copyright (C) 2023 Lukas Kohout
+﻿// Copyright (c) BIM Consulting s.r.o. (www.bimcon.cz)
+// All rights reserved.
+// Developed by BIM Consulting s.r.o. (www.bimcon.cz)
 
 using Xbim.Ifc;
 using Xbim.Ifc4.Interfaces;
 
-namespace IfcModelValidator.Handlers.Ifc;
+namespace IfcModelHandler.Properties;
 
 /// <summary>
 ///     Logic for retrieving IFC element's property sets.

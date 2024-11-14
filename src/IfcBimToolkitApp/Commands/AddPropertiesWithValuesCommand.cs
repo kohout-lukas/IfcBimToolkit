@@ -20,14 +20,14 @@ using Xbim.Ifc4.SharedComponentElements;
 namespace IfcBimToolkitApp.Commands;
 public static class AddPropertiesWithValuesCommand
 {
-    private static List<ElementPropertyDataModel> seed =
+    private static readonly List<ElementPropertyDataModel> seed =
     [
-        new ElementPropertyDataModel(typeof(IfcColumn), "MSKP", "Kod prvku", "SL03", "Xbim.Ifc4.MeasureResource.IfcText"),
-        new ElementPropertyDataModel(typeof(IfcElementAssembly), "MSKP", "Kod prvku", "DC01", "Xbim.Ifc4.MeasureResource.IfcText"),
-        new ElementPropertyDataModel(typeof(IfcBeam), "MSKP", "Kod prvku", "DP01", "Xbim.Ifc4.MeasureResource.IfcText"),
-        new ElementPropertyDataModel(typeof(IfcMember), "MSKP", "Kod prvku", "DP02", "Xbim.Ifc4.MeasureResource.IfcText"),
-        new ElementPropertyDataModel(typeof(IfcPlate), "MSKP", "Kod prvku", "DP03", "Xbim.Ifc4.MeasureResource.IfcText"),
-        new ElementPropertyDataModel(typeof(IfcMechanicalFastener), "MSKP", "Kod prvku", "OB01", "Xbim.Ifc4.MeasureResource.Ifctext"),
+        new ElementPropertyDataModel(typeof(IfcColumn), "MSKP", "Kód prvku", "SL03", "Xbim.Ifc4.MeasureResource.IfcText"),
+        new ElementPropertyDataModel(typeof(IfcElementAssembly), "MSKP", "Kód prvku", "DC01", "Xbim.Ifc4.MeasureResource.IfcText"),
+        new ElementPropertyDataModel(typeof(IfcBeam), "MSKP", "Kód prvku", "DP01", "Xbim.Ifc4.MeasureResource.IfcText"),
+        new ElementPropertyDataModel(typeof(IfcMember), "MSKP", "Kód prvku", "DP02", "Xbim.Ifc4.MeasureResource.IfcText"),
+        new ElementPropertyDataModel(typeof(IfcPlate), "MSKP", "Kód prvku", "DP03", "Xbim.Ifc4.MeasureResource.IfcText"),
+        new ElementPropertyDataModel(typeof(IfcMechanicalFastener), "MSKP", "Kód prvku", "OB01", "Xbim.Ifc4.MeasureResource.Ifctext"),
     ];
 
     public static void AddPropertiesWithData(string input, string output)
@@ -56,11 +56,12 @@ public static class AddPropertiesWithValuesCommand
         Dictionary<Type, List<ElementPropertyDataModel>> distinctData = [];
         foreach (var element in data)
         {
-            if (!distinctData.ContainsKey(element.IfcClass))
-            {                
-                distinctData.Add(element.IfcClass, []);
+            if (!distinctData.TryGetValue(element.IfcClass, out List<ElementPropertyDataModel>? value))
+            {
+                value = [];
+                distinctData.Add(element.IfcClass, value);
             }
-            distinctData[element.IfcClass].Add(element);
+            value.Add(element);
         }
         return distinctData;
     }
@@ -101,7 +102,7 @@ public static class AddPropertiesWithValuesCommand
         }
         return properties;
     }
-    private static IfcValue IfcValueFactory(IfcValue type, string value)
+    private static IfcValue IfcValueFactory(IfcValue? type, string value)
     {
         return type switch
         {
